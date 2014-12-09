@@ -1,6 +1,8 @@
 //document.addEventListener("deviceready", onDeviceReady, false);
 document.addEventListener("DOMContentLoaded", onDeviceReady, false);
 
+var btnReserve, btnCheckIn, btnMenu, btnSignUp, btnCheckOut, btnPhotos, home, reserve, checkIn, menu, signUp, checkOut, photos;
+
 function onDeviceReady() {
 
 
@@ -11,7 +13,6 @@ btnSignUp = document.querySelector("#buttonSignUp");
 btnCheckOut = document.querySelector("#buttonCheckOut");
 btnPhotos = document.querySelector("#buttonPhoto");
 
-
 home = document.querySelector("#home");
 reserve = document.querySelector("#reservePage");
 checkIn = document.querySelector("#checkInPage");
@@ -19,8 +20,6 @@ menu = document.querySelector("#menuPage");
 signUp = document.querySelector("#signUpPage");
 checkOut = document.querySelector("#checkOutPage");
 photos = document.querySelector("#photoPage");
-
-
 
 btnReserve.addEventListener("click", pageReserve);
 btnCheckIn.addEventListener("click", pageCheckIn);
@@ -37,8 +36,6 @@ btnPhotos.addEventListener("click", pagePhotos);
 
 
 function pageReserve(){
-	
-	 
 	 
 	 reserve.style.display = "block";
 	 home.style.display = "none";
@@ -53,11 +50,13 @@ function pageReserve(){
 	 backBtn.addEventListener("click", homePageDeleteBtn);
 	 
 	 function homePageDeleteBtn() {
-	 header.removeChild(backButton);
-	 home.style.display = "block";
-	 reserve.style.display = "none";
-	 
-}
+		 header.removeChild(backButton);
+		 home.style.display = "block";
+		 reserve.style.display = "none";
+		 emptyDiv("reservationDiv");
+	 }
+	 initReservations();
+
 	
 }
 
