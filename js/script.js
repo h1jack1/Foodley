@@ -39,7 +39,6 @@ btnPhotos.addEventListener("click", pagePhotos);
 function pageReserve(){
 	
 	 
-	 
 	 reserve.style.display = "block";
 	 home.style.display = "none";
 	 
@@ -51,11 +50,14 @@ function pageReserve(){
 	 
 	 backBtn = document.querySelector(".backBtn");
 	 backBtn.addEventListener("click", homePageDeleteBtn);
-	 
+	
+    initReservations();//STARTING POINT OF DAN'S CODE
+    
 	 function homePageDeleteBtn() {
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 reserve.style.display = "none";
+     emptyDiv("reservationDiv");
 }
 	
 }
