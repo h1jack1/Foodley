@@ -2,8 +2,8 @@
 document.addEventListener("DOMContentLoaded", onDeviceReady, false);
 
 function onDeviceReady() {
-	
-	
+
+
 btnReserve = document.querySelector("#buttonReserve");
 btnCheckIn = document.querySelector("#buttonCheckIn");
 btnMenu = document.querySelector("#buttonMenu");
@@ -56,6 +56,7 @@ function pageReserve(){
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 reserve.style.display = "none";
+	 
 }
 	
 }
@@ -78,11 +79,13 @@ function pageCheckIn() {
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 checkIn.style.display = "none";
+	 
   }
 }
 
 function pageMenu() {
 	
+	 initMenu();
 	 menu.style.display = "block";
 	 home.style.display = "none";
 	 
@@ -99,6 +102,7 @@ function pageMenu() {
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 menu.style.display = "none";
+	 deleteDiv("menuDiv");
   }
 	
 }
@@ -121,6 +125,8 @@ function pageSignUp() {
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 signUp.style.display = "none";
+	 deleteDiv("menuDiv");
+	 
   }
 }
 
@@ -143,6 +149,7 @@ function pageCheckOut() {
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 checkOut.style.display = "none";
+	 
   }
 }
 
@@ -164,5 +171,6 @@ function pagePhotos() {
 	 header.removeChild(backButton);
 	 home.style.display = "block";
 	 photos.style.display = "none";
+	 
   }
 }
