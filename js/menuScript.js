@@ -1,8 +1,10 @@
 var menuDiv = document.querySelector("#menuDiv");
 var menuPage = document.querySelector("#menuDiv1");
+var cartListMax;
 
 function initMenu() {
 	
+	cartListMax = false;
 	console.log("Success!");
 	var menuDiv1 = document.createElement("div");
 	menuDiv1.setAttribute('id', 'menuDiv1');
@@ -114,10 +116,22 @@ function deleteDiv(divDelete) {
 function addToCart(ev){
 	console.log(ev.currentTarget.firstChild.innerHTML);
 	console.log("added to cart");
+	
 	cartList.style.display = "block";
+	
+	if(document.getElementById("cartListItems").childNodes.length < 4){
 	cartListItem = document.createElement("p");
 	cartListItem.innerHTML = ev.currentTarget.childNodes[0].innerHTML;
 	document.getElementById("cartListItems").appendChild(cartListItem);
+	}
+	else{
+		if(!cartListMax){
+			cartListMax = true;
+			etc = document.createElement("p");
+			etc.innerHTML = ("...");
+			cartListItems.appendChild(etc);	
+			}
+	}
 	
 	//cartListItems.setAttribute('id', 'cartListItems');
 	//cartList.appendChild(cartListItems);
