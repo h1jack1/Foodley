@@ -101,6 +101,22 @@ height: 16%;
 }
 
 
+#cartList{
+	display: none;
+	position: absolute;
+	width: 50%;
+	height: 10%;
+	top: 15%;
+	left: 13%;
+	font-size: 12px;
+	
+}
 
+#cartListItems{
+float: left;
+}
 
-
+#cartListCost{
+position: absolute;
+left: 90%;
+}

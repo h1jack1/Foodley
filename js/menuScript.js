@@ -17,6 +17,12 @@ function initMenu() {
 	menuDiv3.setAttribute('id', 'menuDiv3');
 	menuPage.appendChild(menuDiv3);
 	
+	var cartList = document.createElement("div");
+	cartList.setAttribute('id', 'cartList');
+	cartList.innerHTML = ("<p id='cartName'>Cart:</p><div id='cartListItems'></div>");
+	menuDiv = document.querySelector("#menuDiv");
+	menuDiv.appendChild(cartList);
+	
 	
 
 	//Loop JSON data, retreive appetizers and append to page
@@ -38,6 +44,7 @@ function initMenu() {
 		var appPrice = menuData.Appetizers[i].Cost;
 		appCost.innerHTML = ("$" + appPrice);
 		var image = new Image();
+		appDiv.addEventListener('click', addToCart);
 		//image.src = atob(menuData.Appetizers[i].Image);
 		//appDiv.appendChild(image);
 		//image.src = menuData.Appetizers[i].Image;
@@ -64,6 +71,7 @@ function initMenu() {
 		dishesName.innerHTML = (dishes);
 		var dishPrice = menuData.Dishes[i].Cost;
 		dishesCost.innerHTML = ("$" + dishPrice);
+		dishesDiv.addEventListener('click', addToCart);
 		}
 		
 	//Loop JSON data, retreive desserts and append to page
@@ -82,6 +90,8 @@ function initMenu() {
 		dessertsDiv.appendChild(dessertsName);
 		dessertsDiv.appendChild(dessertsCost);
 		menuDiv3.appendChild(dessertsDiv);
+		dessertsDiv.addEventListener('click', addToCart);
+		
 		
 		var dessertsPrice = menuData.Desserts[i].Cost;
 		dessertsCost.innerHTML = ("$" + dessertsPrice);
@@ -99,4 +109,39 @@ function deleteDiv(divDelete) {
     }
   console.log("div "+menuDiv+" emptied");
 
+}
+
+function addToCart(ev){
+	console.log(ev.currentTarget.firstChild.innerHTML);
+	console.log("added to cart");
+	cartList.style.display = "block";
+	cartListItem = document.createElement("p");
+	cartListItem.innerHTML = ev.currentTarget.childNodes[0].innerHTML;
+	document.getElementById("cartListItems").appendChild(cartListItem);
+	
+	//cartListItems.setAttribute('id', 'cartListItems');
+	//cartList.appendChild(cartListItems);
+	menuDiv.appendChild(cartList);
+	console.log("current Length: "+document.getElementById('cartList').childNodes.length);
+	
+	if(document.getElementById('cartList').childNodes.length<=2){
+		var cartListCost = document.createElement("p");
+		cartListCost.setAttribute('id', 'cartListCost');
+		cartListCost.innerHTML = ev.currentTarget.childNodes[1].innerHTML;
+		cartList.appendChild(cartListCost);
+		}
+	
+	else{
+		
+		var cost = ev.currentTarget.childNodes[1].innerHTML;
+		var splitCost = cost.split('$');
+		var currentTotal = document.getElementById('cartListCost').innerHTML;
+		var splitTotal = currentTotal.split("$");
+		currentTotal = parseFloat(splitTotal[1]) + parseFloat(splitCost[1]);
+		document.getElementById('cartListCost').innerHTML = "$" + currentTotal;
+		}
+	
+	
+	
+	
 }
