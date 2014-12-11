@@ -103,6 +103,10 @@ function pageMenu() {
 	 menu.style.display = "none";
 	 deleteDiv("menuDiv");
 	 deleteDiv("footerCart");
+	 addBackImage();
+	 var orderButton = document.querySelector("#orderButton");
+	 var footer = document.querySelector("#footer");
+	 footer.removeChild(orderButton);
   }
 	
 }
@@ -166,6 +170,7 @@ function pagePhotos() {
 	 
 	 backBtn = document.querySelector(".backBtn");
 	 backBtn.addEventListener("click", homePageDeleteBtn);
+	 contactFunc();
 	 
 	 function homePageDeleteBtn() {
 	 header.removeChild(backButton);

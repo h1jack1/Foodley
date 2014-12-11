@@ -175,19 +175,36 @@ function makeReservation(partySize, time, tableNumber){
     //partySize 0 for 2, 1 for 4, 2 for 6
     //time is index so 0 is based on start time
     //table number is actual number
-    for(var i=0; i<reservationData.PartySizes[partySize].Tables.length; i++){
-        if(reservationData.PartySizes[partySize].Tables[i].TableNumber == tableNumber){
-               
-            reservationData.PartySizes[partySize].Tables[i].ReservationTimes[time].Reserved = true;
-            reservationData.PartySizes[partySize].Tables[i].ReservationTimes[time].User = userId;
-            console.log(reservationData);
-            console.log(reservationData.PartySizes[partySize].Tables[i].ReservationTimes[time].User);
+    var existingReservation = false;
+    for (var i = 0; i < reservationData.PartySizes.length; i++) {
+        for (var j = 0; j < reservationData.PartySizes[i].Tables.length; j++) {
+            for (var k = 0; k < reservationData.PartySizes[i].Tables[j].ReservationTimes.length; k++) {
+                if (reservationData.PartySizes[i].Tables[j].ReservationTimes[k].User == userId) {
+                     existingReservation = true;
+                     alert("YOU ALREADY HAVE A RESERVATION");
+                }
+            }
+
         }
     }
     
-    alert("reservation created");
+   if(!existingReservation){
+       for(var i=0; i<reservationData.PartySizes[partySize].Tables.length; i++){
+            if(reservationData.PartySizes[partySize].Tables[i].TableNumber == tableNumber){
+               
+                reservationData.PartySizes[partySize].Tables[i].ReservationTimes[time].Reserved = true;
+                reservationData.PartySizes[partySize].Tables[i].ReservationTimes[time].User = userId;
+                console.log(reservationData);
+                console.log(reservationData.PartySizes[partySize].Tables[i].ReservationTimes[time].User);
+            }
+        }
+    
+    alert("reservation created ");
     
     //var reservationData now contains up-to-date data;
+   }
+    
+
 }
 
 function emptyDiv(divId){

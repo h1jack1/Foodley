@@ -23,7 +23,9 @@ function initMenu() {
 	cartList.setAttribute('id', 'cartList');
 	cartList.innerHTML = ("<p id='cartName'>Cart:</p><div id='cartListItems'></div>");
 	footerCart = document.querySelector("#footerCart");
+	console.log(footerCart);
 	footerCart.appendChild(cartList);
+	
 	
 	
 
@@ -136,7 +138,7 @@ function addToCart(ev){
 	
 	cartList.style.display = "block";
 	
-	if(document.getElementById("cartListItems").childNodes.length < 4){
+	if(document.getElementById("cartListItems").childNodes.length < 1){
 	cartListItem = document.createElement("p");
 	cartListItem.innerHTML = ev.currentTarget.childNodes[1].innerHTML;
 	document.getElementById("cartListItems").appendChild(cartListItem);
@@ -160,6 +162,15 @@ function addToCart(ev){
 		cartListCost.setAttribute('id', 'cartListCost');
 		cartListCost.innerHTML = ev.currentTarget.childNodes[2].innerHTML;
 		cartList.appendChild(cartListCost);
+		deleteDiv("socialImage");
+		var orderButton = document.createElement("div");
+		orderButton.setAttribute('id', 'orderButton');
+		orderButton.innerHTML = ("Place Order");
+		var footer = document.querySelector("#footer");
+		footer.appendChild(orderButton);
+		orderButton.addEventListener('click', placeOrder);
+		
+		
 		}
 	
 	else{
@@ -173,6 +184,34 @@ function addToCart(ev){
 		}
 	
 	
+}
+	function addBackImage(){
+	var socialImage = document.createElement("img");
+	socialImage.setAttribute("src", "img/social_media_icons.jpg");
+	socialImage.setAttribute("style", "width: 130px;height:38px;position:absolute;left:30%;top:10%");
+	var footerDiv = document.querySelector("#socialImage");
+	footerDiv.appendChild(socialImage);
+	
+}
+
+function placeOrder() {
+	alert("Your Order has been Placed");
+	backBtn = document.querySelector(".backBtn");
 	
 	
+	function homePageDeleteBtn() {
+	 header = document.querySelector("#appHeader");
+	 home = document.querySelector("#home");
+	 menu = document.querySelector("#menuPage");
+	 header.removeChild(backBtn);
+	 home.style.display = "block";
+	 menu.style.display = "none";
+	 deleteDiv("menuDiv");
+	 deleteDiv("footerCart");
+	 var orderButton = document.querySelector("#orderButton");
+	 var footer = document.querySelector("#footer");
+	 footer.removeChild(orderButton);
+  }
+	homePageDeleteBtn();
+	addBackImage();
 }
