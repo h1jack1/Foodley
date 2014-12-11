@@ -102,6 +102,7 @@ function pageMenu() {
 	 home.style.display = "block";
 	 menu.style.display = "none";
 	 deleteDiv("menuDiv");
+	 deleteDiv("footerCart");
   }
 	
 }

@@ -22,8 +22,8 @@ function initMenu() {
 	var cartList = document.createElement("div");
 	cartList.setAttribute('id', 'cartList');
 	cartList.innerHTML = ("<p id='cartName'>Cart:</p><div id='cartListItems'></div>");
-	menuDiv = document.querySelector("#menuDiv");
-	menuDiv.appendChild(cartList);
+	footerCart = document.querySelector("#footerCart");
+	footerCart.appendChild(cartList);
 	
 	
 
@@ -35,6 +35,9 @@ function initMenu() {
 		var menuDiv1 = document.querySelector("#menuDiv1");
 		var appDiv = document.createElement("div");
 		appDiv.setAttribute('id', 'appDiv' + i);
+		var appImageHolder = document.createElement("div");
+		appImageHolder.setAttribute('id', 'appImageHolder' + i);
+		appDiv.appendChild(appImageHolder);
 		var appName = document.createElement("p")
 		appName.setAttribute('id', 'appName');
 		var appCost = document.createElement("p");
@@ -45,12 +48,10 @@ function initMenu() {
 		appName.innerHTML = (app);
 		var appPrice = menuData.Appetizers[i].Cost;
 		appCost.innerHTML = ("$" + appPrice);
-		var image = new Image();
 		appDiv.addEventListener('click', addToCart);
-		//image.src = atob(menuData.Appetizers[i].Image);
-		//appDiv.appendChild(image);
-		//image.src = menuData.Appetizers[i].Image;
-		//appDiv.appendChild(image);
+		var image = new Image();
+		image.src = menuData.Appetizers[i].Image;
+		appImageHolder.appendChild(image);
 		}
 		
 		
@@ -63,6 +64,9 @@ function initMenu() {
 		var menuDiv2 = document.querySelector("#menuDiv2");
 		var dishesDiv = document.createElement("div");
 		dishesDiv.setAttribute('id', 'dishesDiv' + i);
+		var dishesImageHolder = document.createElement("div");
+		dishesImageHolder.setAttribute('id', 'dishesImageHolder' + i);
+		dishesDiv.appendChild(dishesImageHolder);
 		var dishesName = document.createElement("p");
 		dishesName.setAttribute('id', 'dishesName');
 		var dishesCost = document.createElement("p");
@@ -74,6 +78,9 @@ function initMenu() {
 		var dishPrice = menuData.Dishes[i].Cost;
 		dishesCost.innerHTML = ("$" + dishPrice);
 		dishesDiv.addEventListener('click', addToCart);
+		var image2 = new Image();
+		image2.src = menuData.Dishes[i].Image;
+		dishesImageHolder.appendChild(image2);
 		}
 		
 	//Loop JSON data, retreive desserts and append to page
@@ -84,6 +91,9 @@ function initMenu() {
 		var menuDiv3 = document.querySelector("#menuDiv3");
 		var dessertsDiv = document.createElement("div");
 		dessertsDiv.setAttribute('id', 'dessertsDiv' + i);
+		var dessertsImageHolder = document.createElement("div");
+		dessertsImageHolder.setAttribute('id', 'dessertsImageHolder' + i);
+		dessertsDiv.appendChild(dessertsImageHolder);
 		var dessertsName = document.createElement("p");
 		dessertsName.setAttribute('id', 'dessertsName');
 		var dessertsCost = document.createElement("p");
@@ -93,6 +103,10 @@ function initMenu() {
 		dessertsDiv.appendChild(dessertsCost);
 		menuDiv3.appendChild(dessertsDiv);
 		dessertsDiv.addEventListener('click', addToCart);
+		var image3 = new Image();
+		image3.src = menuData.Desserts[i].Image;
+		dessertsImageHolder.appendChild(image3);
+		
 		
 		
 		var dessertsPrice = menuData.Desserts[i].Cost;
@@ -106,10 +120,13 @@ function initMenu() {
 function deleteDiv(divDelete) {
 	
     var myNode = document.getElementById(divDelete);
-    while (myNode.firstChild) {
+	while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
-    }
-  console.log("div "+menuDiv+" emptied");
+		}
+		
+	
+	
+  console.log("div "+divDelete+" emptied");
 
 }
 
@@ -121,7 +138,7 @@ function addToCart(ev){
 	
 	if(document.getElementById("cartListItems").childNodes.length < 4){
 	cartListItem = document.createElement("p");
-	cartListItem.innerHTML = ev.currentTarget.childNodes[0].innerHTML;
+	cartListItem.innerHTML = ev.currentTarget.childNodes[1].innerHTML;
 	document.getElementById("cartListItems").appendChild(cartListItem);
 	}
 	else{
@@ -135,19 +152,19 @@ function addToCart(ev){
 	
 	//cartListItems.setAttribute('id', 'cartListItems');
 	//cartList.appendChild(cartListItems);
-	menuDiv.appendChild(cartList);
+	footerCart.appendChild(cartList);
 	console.log("current Length: "+document.getElementById('cartList').childNodes.length);
 	
 	if(document.getElementById('cartList').childNodes.length<=2){
 		var cartListCost = document.createElement("p");
 		cartListCost.setAttribute('id', 'cartListCost');
-		cartListCost.innerHTML = ev.currentTarget.childNodes[1].innerHTML;
+		cartListCost.innerHTML = ev.currentTarget.childNodes[2].innerHTML;
 		cartList.appendChild(cartListCost);
 		}
 	
 	else{
 		
-		var cost = ev.currentTarget.childNodes[1].innerHTML;
+		var cost = ev.currentTarget.childNodes[2].innerHTML;
 		var splitCost = cost.split('$');
 		var currentTotal = document.getElementById('cartListCost').innerHTML;
 		var splitTotal = currentTotal.split("$");
